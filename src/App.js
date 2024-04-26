@@ -10,8 +10,17 @@ function App() {
       <Button variant='outline-primary'>Make a Budget</Button>
       <Button variant='outline-secondary'>Create Expense</Button>
     </Stack>
-    <div style={{diplay: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-      gap: "1rem", alignItems: "flex-start"}}> </div>
+    <div style={{
+
+      diplay: "grid", 
+      gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+      gap: "1rem", 
+      alignItems: "flex-start"
+        }}>
+      <BudgetViews>
+        
+      </BudgetViews>
+           </div>
   </Container>
 }
 
