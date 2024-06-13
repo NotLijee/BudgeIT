@@ -1,27 +1,27 @@
 import React, { useRef, useState  } from 'react'
-import { Modal, Form, Button, Stack  } from 'react-bootstrap'
+import { Modal, Form, Button, Stack, CloseButton  } from 'react-bootstrap'
 import { useBudgets } from './Contexts/BudgetContexts'
+// import { showAddBudgetModal, setShowAddBudgetModal } from './App.js'
 
 
-
-
-export default function AddBudgetModal({ show }) {
+export default function AddBudgetModal({ show, onHide }) {
     const nameRef = useRef()
     const maxRef = useRef()
     const { addBudget } = useBudgets()
-    const [isOpen, setIsOpen] = useState(show)
-    const handleClose = () => setIsOpen(false)
     function handleSubmit(e) {
         e.preventDefault()
         addBudget({
         name: nameRef.current.value,
         max: parseFloat(maxRef.current.value),
         })
-        handleClose()
+        onHide()
     }
-    return (
 
-    <Modal show = {show} onHide = { handleClose } >
+
+
+    return (
+    
+    <Modal show = {show} onHide = { onHide } >
         <Form onSubmit= {handleSubmit}>
             <Modal.Header closeButton>
                 <Modal.Title> New Budget </Modal.Title>
@@ -39,10 +39,7 @@ export default function AddBudgetModal({ show }) {
                         <Form.Control type = "number" required min = {0} step = {0.01} ref={maxRef} />
                     </Form.Group>
                     <div className='d-flex justify-content-end'>
-                        <Stack direction = "horizontal" gap = "2">
-                        <Button closeButton variant='secondary' class="close">Close</Button>
                         <Button variant='primary' type='submit'>Add</Button>
-                        </Stack>
                     </div>
                 </Modal.Body>
             </Modal.Header>
